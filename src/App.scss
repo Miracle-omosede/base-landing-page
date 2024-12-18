@@ -10,6 +10,7 @@ html {
 
 .hero {
   height: 100vh;
+  visibility: hidden;
   .container {
     width: 1440px;
     min-width: 1440px;
@@ -99,14 +100,9 @@ html {
         .hero-image{
           position: absolute;
           overflow: hidden;
-          &.girl2{
-            top: 0;
-            right: 0;
-            width: 45%;
-            height: 50%;
-          }
+          // transform: translate(0px, 0px);
           &.girl{
-            bottom: 20%;
+            top: 0;
             right: 0;
             width: 45%;
             height: 50%;

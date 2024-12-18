@@ -1,12 +1,28 @@
+import React, {useRef, useEffect} from 'react'
 import './App.scss'
+import { TweenMax, TimelineLite, Power3 } from 'gsap'
 import Oldwoman from "./images/oldwoman2.jpg"
-import Oldwoman2 from "./images/oldwoman1.jpg"
 import Dude from "./images/dude.jpg"
 import Arrowright from "./images/arrow-right.svg"
 
 function App() {
+  let app = useRef(null);
+  let images = useRef(null);
+
+  let tl = new TimelineLite()
+
+  useEffect(() => {
+    // image vars
+    const girlImage = images.firstElementChild;
+    const boyImage = images.lastElementChild;
+
+    TweenMax.to(app, 0, { css: {visibility: "visible"}})
+    tl.from(girlImage, 1.2,{y: 1280, ease: Power3.easeOut})
+    .from(girlImage.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, .2)
+  })
+  
   return (
-    <div className='hero'>
+    <div className='hero' ref={el => app = el}>
       <div className='container'>
         <div className='hero-inner'>
           <div className="hero-content">
@@ -39,10 +55,7 @@ function App() {
           </div>
           </div>
           <div className='hero-images'>
-          <div className='hero-images-inner'>
-            <div className='hero-image girl2'>
-              <img src={Oldwoman2} alt='old woman'/>
-            </div>
+          <div className='hero-images-inner' ref={el => images = el}>
             <div className='hero-image girl'>
               <img src={Oldwoman} alt='old woman'/>
             </div>
